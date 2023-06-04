@@ -2,7 +2,7 @@ import { useEffect  } from "react";
 import { FormAddContacts } from "./FormAddContacts";
 import { FilterContacts } from './FilterContacts';
 import { RenderContactList } from './RenderContactList';
-import {ToastContainer, toast} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 // import { nanoid } from 'nanoid';
 import { Div, Title, ContactsTitle } from './App.styled';
 import { useSelector, useDispatch } from 'react-redux';
