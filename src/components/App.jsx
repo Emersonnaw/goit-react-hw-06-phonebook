@@ -1,4 +1,4 @@
-import { useState,useEffect  } from "react";
+import { useEffect  } from "react";
 import { FormAddContacts } from "./FormAddContacts";
 import { FilterContacts } from './FilterContacts';
 import { RenderContactList } from './RenderContactList';
@@ -6,9 +6,9 @@ import {ToastContainer, toast} from 'react-toastify';
 // import { nanoid } from 'nanoid';
 import { Div, Title, ContactsTitle } from './App.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import 'react-toastify/dist/ReactToastify.css';
+
 import { contactsList, filterList } from 'components/store/contacts/selectors';
-import { addFormValues, delContact } from 'components/store/contacts/actions';
+import { delContact } from 'components/store/contacts/actions';
 export const App = () => {
 
   const contacts = useSelector(contactsList);
