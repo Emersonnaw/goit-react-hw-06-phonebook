@@ -7,7 +7,7 @@ export const RenderContactList = ({ contactList, onDeleteContact }) => {
         {contactList.map(({ id, name, number }) => (
           <Li key={id}>
             <P>
-              &#9742; &#160;{name}: {number}
+             &#9742; &#160;{name}: {number}
             </P>
             <Button onClick={() => onDeleteContact(id)}>Delete</Button>
           </Li>

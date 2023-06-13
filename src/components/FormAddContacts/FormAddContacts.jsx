@@ -2,48 +2,39 @@
 import { Formik, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { Container,  FormCastom, LabelCastom, InputCastom,Button } from './FormAddContacts.styled';
-// import PropTypes from 'prop-types';
-
-
-import { contactsList } from 'components/store/contacts/selectors';
-import { useSelector, useDispatch } from 'react-redux';
-import { addFormValues } from 'components/store/contacts/actions';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { toast} from 'react-toastify';
+import { useSelector, useDispatch } from "react-redux";
+import { addFormValue } from '../../redux/contactsSlice';
 let userSchema = yup.object().shape({
   name: yup.string().required(),
- 
-  
 });
 const initialValues = {
   name: '',
   number: '',
 };
 
-// { onFormData }
 export const FormAddContacts = () => {
- 
-  const contacts = useSelector(contactsList);
-  const dispatch = useDispatch();
+ const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts.contacts);
 
-  
   const handleSubmit = (values, { resetForm }) => {
-
-      const checkExistContact = contacts.find(contact => contact.name.toLowerCase() === (values.name.toLowerCase()));
-  if (!checkExistContact) {
-  dispatch(addFormValues(values));
-  } else {
+   
+    const checkExistContact = contacts.find(contact => contact.name.toLowerCase() === (values.name));
+    if (!checkExistContact) {
+      
+      dispatch(addFormValue(values));
+    } else {
      toast.error(`"${values.name.toUpperCase()} "is already in contacts`, {
                     position: "top-right",
                     autoClose: 3000,
                     theme: "colored",
                 });   
     }
-    // onFormData(values);
     resetForm();
   }
 
+  
   return (
     <Container>
     <Formik initialValues={initialValues}  validationSchema={userSchema} onSubmit={handleSubmit}>
@@ -77,7 +68,3 @@ export const FormAddContacts = () => {
   );
   
 };
-
-// FormAddContacts.propTypes = {
-//   onFormData: PropTypes.func.isRequired,
-// }
